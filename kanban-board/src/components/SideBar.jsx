@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
+  GlobalOutlined,
   UserOutlined,
-  VideoCameraOutlined,
+  FundProjectionScreenOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 const { Header, Sider, Content } = Layout;
@@ -25,17 +24,22 @@ const SideBar = ({ btnCollapsed }) => {
             {
               key: "1",
               icon: <UserOutlined />,
-              label: "nav 1",
+              label: "Profile",
             },
             {
               key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
+              icon: <FundProjectionScreenOutlined />,
+              label: "Dashboard",
             },
             {
               key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
+              icon: <GlobalOutlined />,
+              label: "Notification",
+            },
+            {
+              key: "4",
+              icon: <LogoutOutlined />,
+              label: "Logout",
             },
           ]}
         />
