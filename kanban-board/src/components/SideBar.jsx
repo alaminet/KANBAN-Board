@@ -4,11 +4,14 @@ import {
   UserOutlined,
   FundProjectionScreenOutlined,
   LogoutOutlined,
+  PoweroffOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
+import { NavLink, useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 const SideBar = ({ btnCollapsed }) => {
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -24,17 +27,17 @@ const SideBar = ({ btnCollapsed }) => {
             {
               key: "1",
               icon: <UserOutlined />,
-              label: "Profile",
+              label: <NavLink to="/profile">Profile</NavLink>,
             },
             {
               key: "2",
               icon: <FundProjectionScreenOutlined />,
-              label: "Dashboard",
+              label: <NavLink to="/dashboard">Dashboard</NavLink>,
             },
             {
               key: "3",
               icon: <GlobalOutlined />,
-              label: "Notification",
+              label: <NavLink to="/notification">Notification</NavLink>,
             },
             {
               key: "4",

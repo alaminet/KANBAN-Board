@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import SideBar from "./SideBar";
-import { Layout, theme, Button } from "antd";
-import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
-import Breadcrumbs from "breadcrumbs-nav";
+import { Layout, theme, Button, Breadcrumb } from "antd";
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
 
 const RootLayout = () => {
   const [collapsed, setCollapsed] = useState(true);
+
+  const bread = window.location.pathname.split("/").slice(1);
 
   const { Header, Content, Footer } = Layout;
   const {
@@ -23,7 +28,6 @@ const RootLayout = () => {
               background: colorBgContainer,
             }}
           >
-            <Breadcrumbs />
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -34,10 +38,12 @@ const RootLayout = () => {
                 height: 64,
               }}
             />
+            KANBAN BOARD
           </Header>
+
           <Content
             style={{
-              margin: "24px 16px 0",
+              margin: "16px 16px 0",
             }}
           >
             <div
