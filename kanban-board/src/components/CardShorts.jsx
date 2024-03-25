@@ -14,9 +14,12 @@ import {
   Popconfirm,
   message,
   Divider,
+  Typography,
 } from "antd";
+import Mention from "./Mention";
 
 const CardShorts = () => {
+  const { Text } = Typography;
   const { TextArea } = Input;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -45,6 +48,7 @@ const CardShorts = () => {
           borderRadius: "5px",
           marginBottom: "5px",
           cursor: "pointer",
+          boxSizing: "border-box",
         }}
       >
         <div
@@ -53,8 +57,10 @@ const CardShorts = () => {
             cursor: "pointer",
           }}
         >
-          <h4 style={{ margin: "0" }}>Title</h4>
-          <p>Assigned by Al Amin</p>
+          <Text style={{ fontWeight: "bold" }} ellipsis>
+            Lorem, ipsum dolor sitsdsdsdfsfdsfsdfsdaa
+          </Text>
+          <p style={{ margin: "10px 0" }}>Assigned by Al Amin</p>
         </div>
 
         <Flex gap="small">
@@ -82,10 +88,11 @@ const CardShorts = () => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
       >
         <Flex gap="4px" align="center">
           <span>01/02/2024 05:00 PM</span>
-          <Divider type="vertical" />
+          <Divider style={{ backgroundColor: "#000" }} type="vertical" />
           <span>by Al Amin</span>
         </Flex>
         <p>
@@ -99,7 +106,8 @@ const CardShorts = () => {
             <div>
               <AlignLeftOutlined />
             </div>
-            <h5>Activity</h5>
+            <h5 style={{ margin: "10px 0" }}>Activity</h5>
+            <Mention />
           </Flex>
           <Flex gap="small" align="top">
             <div>

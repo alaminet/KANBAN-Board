@@ -10,7 +10,11 @@ const Profile = () => {
         <Divider orientation="left">Profile</Divider>
       </div>
       <div>
-        <Form form={form} layout="vertical" style={{ maxWidth: 350 }}>
+        <Form
+          form={form}
+          layout="vertical"
+          style={{ maxWidth: 350, margin: "0 auto" }}
+        >
           <Form.Item label="Username" tooltip="Check your username">
             <Input disabled placeholder="ex: username" />
           </Form.Item>
@@ -44,7 +48,9 @@ const Profile = () => {
             <Input type="password" placeholder="ex: 654321" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary">Update</Button>
+            <Button block type="primary">
+              Update
+            </Button>
           </Form.Item>
         </Form>
       </div>

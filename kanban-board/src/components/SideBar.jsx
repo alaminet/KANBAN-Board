@@ -30,19 +30,20 @@ const SideBar = ({ btnCollapsed }) => {
             },
             {
               key: "2",
-              icon: <UserOutlined />,
-              label: <NavLink to="/profile">Profile</NavLink>,
-            },
-            {
-              key: "3",
               icon: <FundProjectionScreenOutlined />,
               label: <NavLink to="/dashboard">Dashboard</NavLink>,
             },
             {
-              key: "4",
+              key: "3",
               icon: <GlobalOutlined />,
               label: <NavLink to="/notification">Notification</NavLink>,
             },
+            {
+              key: "4",
+              icon: <UserOutlined />,
+              label: <NavLink to="/profile">Profile</NavLink>,
+            },
+
             {
               key: "5",
               icon: <LogoutOutlined />,

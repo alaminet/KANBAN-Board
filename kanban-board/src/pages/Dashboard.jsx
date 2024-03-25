@@ -1,8 +1,7 @@
 import React from "react";
 import { Card, Flex, FloatButton } from "antd";
-import { CustomerServiceOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import Cardshorts from "../components/CardShorts";
-import ExistingPostModal from "../components/ExistingPostModal";
 
 const Dashboard = () => {
   const handleNewNote = () => {
@@ -17,7 +16,7 @@ const Dashboard = () => {
             bordered={false}
             style={{
               background: "#f48897",
-              minWidth: "23%",
+              width: "23%",
             }}
           >
             <div
@@ -30,6 +29,7 @@ const Dashboard = () => {
               <Cardshorts />
               <Cardshorts />
               <Cardshorts />
+              <Cardshorts />
             </div>
           </Card>
           <Card
@@ -37,7 +37,7 @@ const Dashboard = () => {
             bordered={false}
             style={{
               background: "#f4e688",
-              minWidth: "23%",
+              width: "23%",
             }}
           >
             <div
@@ -56,7 +56,7 @@ const Dashboard = () => {
             bordered={false}
             style={{
               background: "#88f48e",
-              minWidth: "23%",
+              width: "23%",
             }}
           >
             <div
@@ -74,7 +74,7 @@ const Dashboard = () => {
             bordered={false}
             style={{
               background: "#88e2f4",
-              minWidth: "23%",
+              width: "23%",
             }}
           >
             <div

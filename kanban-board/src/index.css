@@ -1,4 +1,4 @@
-p{
+p,h1,h2,h3,h4,h5,h6{
     margin: 0;
 }
 .ant-card-head-title{
@@ -11,3 +11,24 @@ p{
 .ant-card-body{
     padding: 10px !important;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.ant-card-body>div::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.ant-card-body>div {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.slick-arrow::before{
+    color: #172b4d !important;
+}
+
+.antd-demo-dynamic-option img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
