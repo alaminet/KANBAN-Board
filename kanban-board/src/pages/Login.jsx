@@ -1,16 +1,56 @@
 import React, { useState } from "react";
-import { Avatar, Flex, Button, Checkbox, Form, Input } from "antd";
-import { UserOutlined, LockOutlined, UserAddOutlined } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
+import { Avatar, Flex, Button, Checkbox, Form, Input, Alert } from "antd";
+import { LockOutlined, UserAddOutlined, MailFilled } from "@ant-design/icons";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [loadings, setLoadings] = useState(false);
-  const onFinish = (values) => {
-    setLoadings(true);
-    console.log("Received values of form: ", values);
+  const [msg, setMsg] = useState("");
+  const [msgType, setMsgType] = useState("");
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    try {
+      setLoadings(true);
+      const data = await axios.post("http://localhost:8000/v1/api/auth/login", {
+        email: values.email,
+        password: values.password,
+      });
+      console.log(data);
+      setLoadings(false);
+      setMsg(data.data.success);
+      setMsgType("success");
+      setTimeout(() => {
+        navigate("/");
+      }, 2500);
+    } catch (error) {
+      setLoadings(false);
+      setMsg(error.response.data.error);
+      setMsgType("error");
+      if (
+        error.response.data.error === "Your are not Verified, Please Verify !"
+      ) {
+        setTimeout(() => {
+          navigate(`/otpverify/${values.email}`);
+        }, 2500);
+      }
+    }
   };
   return (
     <>
+      <div>
+        {msg && (
+          <Alert
+            style={{ width: "500px", margin: "0 auto" }}
+            message={msg}
+            type={msgType}
+            showIcon
+            closable
+          />
+        )}
+      </div>
       <Flex
         align="center"
         justify="center"
@@ -41,17 +81,17 @@ const Login = () => {
             onFinish={onFinish}
           >
             <Form.Item
-              name="username"
+              name="email"
               rules={[
                 {
                   required: true,
-                  message: "Please input your Username!",
+                  message: "Please input your Email!",
                 },
               ]}
             >
               <Input
-                prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Username"
+                prefix={<MailFilled className="site-form-item-icon" />}
+                placeholder="example@mail.com"
               />
             </Form.Item>
             <Form.Item
