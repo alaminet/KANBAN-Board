@@ -47,7 +47,6 @@ const Home = () => {
           <div
             className="slider-container"
             style={{
-              background: "#88f48e",
               padding: "20px 15px",
               borderRadius: "5px",
             }}
@@ -76,7 +75,6 @@ const Home = () => {
           <div
             className="slider-container"
             style={{
-              background: "#f4e688",
               padding: "20px 15px",
               borderRadius: "5px",
             }}
@@ -105,7 +103,6 @@ const Home = () => {
           <div
             className="slider-container"
             style={{
-              background: "#f48897",
               padding: "20px 15px",
               borderRadius: "5px",
             }}

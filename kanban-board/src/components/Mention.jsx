@@ -5,12 +5,11 @@ const Mention = () => {
   const [mention, setMention] = useState([]);
 
   const onChange = (value) => {
-    console.log("Change:", value);
+    // console.log("Change:", value);
   };
   const onSelect = (option) => {
     setMention([...mention, option]);
   };
-  console.log(mention);
   return (
     <>
       <Mentions

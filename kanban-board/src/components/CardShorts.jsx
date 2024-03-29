@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {
   AlignLeftOutlined,
   CheckCircleTwoTone,
-  ClockCircleOutlined,
+  CheckOutlined,
+  CloseOutlined,
   CommentOutlined,
 } from "@ant-design/icons";
 import {
@@ -15,6 +16,7 @@ import {
   message,
   Divider,
   Typography,
+  Switch,
 } from "antd";
 import Mention from "./Mention";
 
@@ -22,6 +24,7 @@ const CardShorts = () => {
   const { Text } = Typography;
   const { TextArea } = Input;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -42,8 +45,8 @@ const CardShorts = () => {
     <>
       <div
         style={{
-          background: "#fff",
-          padding: "10px",
+          background: "#f5f5f5",
+          padding: "15px",
           margin: "5px",
           borderRadius: "5px",
           marginBottom: "5px",
@@ -58,7 +61,7 @@ const CardShorts = () => {
           }}
         >
           <Text style={{ fontWeight: "bold" }} ellipsis>
-            Lorem, ipsum dolor sitsdsdsdfsfdsfsdfsdaa
+            Lorem ipsum dolor !
           </Text>
           <p style={{ margin: "10px 0" }}>Assigned by Al Amin</p>
         </div>
@@ -90,12 +93,20 @@ const CardShorts = () => {
         onCancel={handleCancel}
         footer={null}
       >
-        <Flex gap="4px" align="center">
+        <Flex gap="4px" align="center" style={{ fontSize: "12px" }}>
+          <div>
+            <Switch
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              size="small"
+              onChange={(e) => setIsDone(e)}
+            />
+          </div>
           <span>01/02/2024 05:00 PM</span>
           <Divider style={{ backgroundColor: "#000" }} type="vertical" />
           <span>by Al Amin</span>
         </Flex>
-        <p>
+        <p style={{ marginBottom: "15px" }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem corrupti
           incidunt ducimus porro optio quae, et neque quibusdam sapiente nemo.
         </p>
@@ -109,33 +120,35 @@ const CardShorts = () => {
             <h5 style={{ margin: "10px 0" }}>Activity</h5>
             <Mention />
           </Flex>
-          <Flex gap="small" align="top">
-            <div>
-              <Avatar
-                style={{
-                  backgroundColor: "#172b4d",
-                  verticalAlign: "middle",
-                }}
-                size="small"
-              >
-                AL
-              </Avatar>
-            </div>
-            <div>
-              <TextArea
-                cols={100}
-                showCount
-                allowClear
-                maxLength={100}
-                onChange={(e) => e.target.value}
-                placeholder="Comments"
-                style={{
-                  marginBottom: "10px",
-                }}
-              />
-              <Button type="primary">Save</Button>
-            </div>
-          </Flex>
+          {!isDone && (
+            <Flex gap="small" align="top" style={{ margin: "15px 0" }}>
+              <div>
+                <Avatar
+                  style={{
+                    backgroundColor: "#172b4d",
+                    verticalAlign: "middle",
+                  }}
+                  size="small"
+                >
+                  AL
+                </Avatar>
+              </div>
+              <div>
+                <TextArea
+                  cols={100}
+                  showCount
+                  allowClear
+                  maxLength={100}
+                  onChange={(e) => e.target.value}
+                  placeholder="Comments"
+                  style={{
+                    marginBottom: "10px",
+                  }}
+                />
+                <Button type="primary">Save</Button>
+              </div>
+            </Flex>
+          )}
         </div>
         <Divider>Conversion</Divider>
         {/* reply details */}
