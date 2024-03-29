@@ -13,6 +13,9 @@ const loginController = async (req, res) => {
         function (err, result) {
           if (result) {
             return res.status(200).json({
+              name: existingUser[0].name,
+              email: existingUser[0].email,
+              role: existingUser[0].role,
               success: "Login Successfull, Please Wait",
             });
           } else {

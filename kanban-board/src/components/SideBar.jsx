@@ -7,13 +7,23 @@ import {
   HomeOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Loginuser } from "../features/Slice/UserSlice";
 const { Header, Sider, Content } = Layout;
 
 const SideBar = ({ btnCollapsed }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const handelLoggedOut = () => {
+    localStorage.removeItem("users");
+    dispatch(Loginuser(null));
+    navigate("/");
+  };
   return (
     <>
       <Sider trigger={null} collapsible collapsed={btnCollapsed}>
@@ -48,6 +58,7 @@ const SideBar = ({ btnCollapsed }) => {
               key: "5",
               icon: <LogoutOutlined />,
               label: "Logout",
+              onClick: handelLoggedOut,
             },
           ]}
         />

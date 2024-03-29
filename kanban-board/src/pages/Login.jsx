@@ -4,6 +4,8 @@ import { LockOutlined, UserAddOutlined, MailFilled } from "@ant-design/icons";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import logoPNG from "../assets/logo.png";
+import { useDispatch } from "react-redux";
+import { Loginuser } from "../features/Slice/UserSlice";
 
 const Login = () => {
   const [loadings, setLoadings] = useState(false);
@@ -11,6 +13,7 @@ const Login = () => {
   const [msgType, setMsgType] = useState("");
   const params = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onFinish = async (values) => {
     try {
@@ -19,13 +22,14 @@ const Login = () => {
         email: values.email,
         password: values.password,
       });
-      console.log(data);
       setLoadings(false);
       setMsg(data.data.success);
       setMsgType("success");
       setTimeout(() => {
         navigate("/");
       }, 2500);
+      dispatch(Loginuser(data));
+      localStorage.setItem("users", JSON.stringify(data));
     } catch (error) {
       setLoadings(false);
       setMsg(error.response.data.error);
