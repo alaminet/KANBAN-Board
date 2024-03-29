@@ -11,6 +11,7 @@ import Notification from "./pages/Notification";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import StartUpLayout from "./components/StartUpLayout";
+import Signup from "./pages/Signup";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -23,6 +24,7 @@ function App() {
         </Route>
         <Route path="/" element={<StartUpLayout />}>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
         </Route>
       </Route>
     )
