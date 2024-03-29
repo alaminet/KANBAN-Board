@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Avatar, Flex, Button, Checkbox, Form, Input } from "antd";
+import axios from "axios";
+import { Avatar, Flex, Button, Checkbox, Form, Input, Alert } from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -10,17 +11,48 @@ import { NavLink } from "react-router-dom";
 
 const Signup = () => {
   const [loadings, setLoadings] = useState(false);
-  const onFinish = (values) => {
-    setLoadings(true);
-    console.log("Received values of form: ", values);
+  const [msg, setMsg] = useState("");
+  const [msgType, setMsgType] = useState("");
+
+  //   registration data send to server
+  const onFinish = async (values) => {
+    try {
+      setLoadings(true);
+      const data = await axios.post(
+        "http://localhost:8000/v1/api/auth/registration",
+        {
+          name: values.username,
+          email: values.email,
+          password: values.password,
+        }
+      );
+      setLoadings(false);
+      setMsg(data.data.message);
+      setMsgType("success");
+    } catch (error) {
+      setLoadings(false);
+      setMsg(error.response.data.error);
+      setMsgType("error");
+    }
   };
   return (
     <>
+      <div>
+        {msg && (
+          <Alert
+            style={{ width: "500px", margin: "0 auto" }}
+            message={msg}
+            type={msgType}
+            showIcon
+            closable
+          />
+        )}
+      </div>
       <Flex
         align="center"
         justify="center"
         vertical
-        style={{ height: "100vh", boxSizing: "border-box" }}
+        style={{ height: "90vh", boxSizing: "border-box" }}
       >
         <div>
           <Avatar size={64} icon={<UserAddOutlined />} />
