@@ -13,7 +13,7 @@ const loginController = async (req, res) => {
         function (err, result) {
           if (result) {
             return res.status(200).json({
-              success: "Login Successfull",
+              success: "Login Successfull, Please Wait",
             });
           } else {
             return res.status(401).send({

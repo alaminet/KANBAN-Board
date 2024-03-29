@@ -102,7 +102,7 @@ const OtpVerify = () => {
               >
                 Verify
               </Button>
-              Or <NavLink to={"/signup"}>Registered an account!</NavLink>
+              Or <NavLink to={"/resend"}>Resend Verification?</NavLink>
             </Form.Item>
           </Form>
         </div>

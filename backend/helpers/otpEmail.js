@@ -20,8 +20,6 @@ async function otpEmail(link, otp, email, template) {
     subject: "OTP Verification-Orebi E-commerce", // Subject line
     html: template(otp, refLink), // html body
   });
-
-  return res.status(200).send({ message: "Verification mail send to you!" });
 }
 
 module.exports = otpEmail;

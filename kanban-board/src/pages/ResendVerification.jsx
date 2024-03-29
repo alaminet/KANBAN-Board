@@ -4,11 +4,10 @@ import { Flex, Button, Form, Input, Alert } from "antd";
 import { MailFilled } from "@ant-design/icons";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 
-const Mailverify = () => {
+const ResendVerification = () => {
   const [loadings, setLoadings] = useState(false);
   const [msg, setMsg] = useState("");
   const [msgType, setMsgType] = useState("");
-  const params = useParams();
   const navigate = useNavigate();
 
   //   registration data send to server
@@ -16,27 +15,21 @@ const Mailverify = () => {
     try {
       setLoadings(true);
       const data = await axios.post(
-        "http://localhost:8000/v1/api/auth/matchemail",
+        "http://localhost:8000/v1/api/auth/reverify",
         {
           email: values.email,
-          token: params.token,
         }
       );
       setLoadings(false);
       setMsg(data.data.message);
       setMsgType("success");
       setTimeout(() => {
-        navigate("/login");
+        navigate(`/otpverify/${values.email}`);
       }, 2500);
     } catch (error) {
       setLoadings(false);
       setMsg(error.response.data.error);
       setMsgType("error");
-      if (error.response.data.error === "Already Verified, Please Login") {
-        setTimeout(() => {
-          navigate("/login");
-        }, 2500);
-      }
     }
   };
   return (
@@ -101,9 +94,9 @@ const Mailverify = () => {
                 className="login-form-button"
                 loading={loadings}
               >
-                Verify
+                Send
               </Button>
-              Or <NavLink to={"/resend"}>Resend Verification!</NavLink>
+              Or <NavLink to={"/signup"}>Signup an account !</NavLink>
             </Form.Item>
           </Form>
         </div>
@@ -112,4 +105,4 @@ const Mailverify = () => {
   );
 };
 
-export default Mailverify;
+export default ResendVerification;

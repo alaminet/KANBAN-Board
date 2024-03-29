@@ -14,6 +14,7 @@ import StartUpLayout from "./components/StartUpLayout";
 import Signup from "./pages/Signup";
 import Mailverify from "./pages/Mailverify";
 import OtpVerify from "./pages/OtpVerify";
+import ResendVerification from "./pages/ResendVerification";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -29,6 +30,7 @@ function App() {
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/mailverify/:token" element={<Mailverify />}></Route>
           <Route path="/otpverify/:email" element={<OtpVerify />}></Route>
+          <Route path="/resend" element={<ResendVerification />}></Route>
         </Route>
       </Route>
     )
