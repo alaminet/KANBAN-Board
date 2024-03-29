@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Avatar, Flex, Button, Checkbox, Form, Input, Alert } from "antd";
-import {
-  UserOutlined,
-  LockOutlined,
-  UserAddOutlined,
-  MailFilled,
-} from "@ant-design/icons";
+import { UserOutlined, LockOutlined, MailFilled } from "@ant-design/icons";
 import { NavLink, useNavigate } from "react-router-dom";
+import logoPNG from "../assets/logo.png";
 
 const Signup = () => {
   const [loadings, setLoadings] = useState(false);
@@ -59,7 +55,7 @@ const Signup = () => {
         style={{ height: "90vh", boxSizing: "border-box" }}
       >
         <div>
-          <Avatar size={64} icon={<UserAddOutlined />} />
+          <Avatar size={100} src={logoPNG} />
         </div>
         <p
           style={{
@@ -129,7 +125,7 @@ const Signup = () => {
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
-              <NavLink to={"/"} className="login-form-forgot">
+              <NavLink to={"/forgotpass"} className="login-form-forgot">
                 Forgot password
               </NavLink>
             </Form.Item>

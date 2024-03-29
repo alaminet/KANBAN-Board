@@ -1,42 +1,35 @@
 import React, { useState } from "react";
-import { Avatar, Flex, Button, Checkbox, Form, Input, Alert } from "antd";
-import { LockOutlined, UserAddOutlined, MailFilled } from "@ant-design/icons";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import logoPNG from "../assets/logo.png";
+import { Flex, Button, Form, Input, Alert } from "antd";
+import { MailFilled } from "@ant-design/icons";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
-const Login = () => {
+const ForgotPass = () => {
   const [loadings, setLoadings] = useState(false);
   const [msg, setMsg] = useState("");
   const [msgType, setMsgType] = useState("");
-  const params = useParams();
   const navigate = useNavigate();
 
+  //   registration data send to server
   const onFinish = async (values) => {
     try {
       setLoadings(true);
-      const data = await axios.post("http://localhost:8000/v1/api/auth/login", {
-        email: values.email,
-        password: values.password,
-      });
-      console.log(data);
+      const data = await axios.post(
+        "http://localhost:8000/v1/api/auth/forgotpass",
+        {
+          email: values.email,
+        }
+      );
       setLoadings(false);
-      setMsg(data.data.success);
+      setMsg(data.data.message);
       setMsgType("success");
       setTimeout(() => {
-        navigate("/");
+        navigate(`/otpverify/${values.email}`);
       }, 2500);
     } catch (error) {
       setLoadings(false);
       setMsg(error.response.data.error);
       setMsgType("error");
-      if (
-        error.response.data.error === "Your are not Verified, Please Verify !"
-      ) {
-        setTimeout(() => {
-          navigate(`/otpverify/${values.email}`);
-        }, 2500);
-      }
     }
   };
   return (
@@ -56,11 +49,8 @@ const Login = () => {
         align="center"
         justify="center"
         vertical
-        style={{ height: "100vh", boxSizing: "border-box" }}
+        style={{ height: "90vh", boxSizing: "border-box" }}
       >
-        <div>
-          <Avatar size={100} src={logoPNG} />
-        </div>
         <p
           style={{
             color: "0a2647",
@@ -70,7 +60,7 @@ const Login = () => {
             margin: "20px 0",
           }}
         >
-          Login your account!
+          Input your Email
         </p>
         <div style={{ width: "320px" }}>
           <Form
@@ -91,32 +81,10 @@ const Login = () => {
               ]}
             >
               <Input
+                type="email"
                 prefix={<MailFilled className="site-form-item-icon" />}
-                placeholder="example@mail.com"
+                placeholder="Email"
               />
-            </Form.Item>
-            <Form.Item
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your Password!",
-                },
-              ]}
-            >
-              <Input
-                prefix={<LockOutlined className="site-form-item-icon" />}
-                type="password"
-                placeholder="Password"
-              />
-            </Form.Item>
-            <Form.Item>
-              <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
-              </Form.Item>
-              <NavLink to={"/forgotpass"} className="login-form-forgot">
-                Forgot password
-              </NavLink>
             </Form.Item>
 
             <Form.Item>
@@ -126,9 +94,9 @@ const Login = () => {
                 className="login-form-button"
                 loading={loadings}
               >
-                Log in
+                Send
               </Button>
-              Or <NavLink to={"/signup"}>Signup now!</NavLink>
+              Or <NavLink to={"/signup"}>Signup an account !</NavLink>
             </Form.Item>
           </Form>
         </div>
@@ -137,4 +105,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPass;
