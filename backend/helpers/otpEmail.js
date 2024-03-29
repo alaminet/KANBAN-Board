@@ -21,7 +21,7 @@ async function otpEmail(link, otp, email, template) {
     html: template(otp, refLink), // html body
   });
 
-  res.status(200).send({ message: "Verification mail send to you!" });
+  return res.status(200).send({ message: "Verification mail send to you!" });
 }
 
 module.exports = otpEmail;

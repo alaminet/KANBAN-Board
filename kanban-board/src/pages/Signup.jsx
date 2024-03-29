@@ -7,12 +7,13 @@ import {
   UserAddOutlined,
   MailFilled,
 } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [loadings, setLoadings] = useState(false);
   const [msg, setMsg] = useState("");
   const [msgType, setMsgType] = useState("");
+  const navigate = useNavigate();
 
   //   registration data send to server
   const onFinish = async (values) => {
@@ -29,6 +30,9 @@ const Signup = () => {
       setLoadings(false);
       setMsg(data.data.message);
       setMsgType("success");
+      setTimeout(() => {
+        navigate(`/otpverify/${values.email}`);
+      }, 5000);
     } catch (error) {
       setLoadings(false);
       setMsg(error.response.data.error);
