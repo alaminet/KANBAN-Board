@@ -7,7 +7,7 @@ function otpMailTemplate(otp, link) {
                 <tbody>
                     <tr>
                       <td>
-                          <h1 style="color:#4a4a4a;margin: 0;">KANBA</h1>
+                          <h1 style="color:#4a4a4a;margin: 0;">KANBAN</h1>
                           <p style="font-size:9px;margin: 0;">Your Personal Note</p>
                       </td>
                       <td style="text-align: right;">

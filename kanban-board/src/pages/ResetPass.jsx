@@ -102,7 +102,7 @@ const ResetPass = () => {
               >
                 Verify
               </Button>
-              Or <NavLink to={"/resend"}>Resend Verification?</NavLink>
+              Or <NavLink to={"/forgotpass"}>Resend Verification?</NavLink>
             </Form.Item>
           </Form>
         </div>

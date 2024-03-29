@@ -7,17 +7,21 @@ const matchForgotPassController = async (req, res) => {
   var decoded = jwt.verify(token, "AxmaH7vSa8");
   const existingUser = await User.find({ email: decoded.email });
   if (existingUser.length > 0) {
-    bcrypt.hash(password, 10, async function (err, hash) {
-      const updatePass = await User.findOneAndUpdate(
-        { email: decoded.email },
-        { $set: { password: hash, token: "", verify: true } },
-        { new: true }
-      );
-      await updatePass.save();
-      return res
-        .status(200)
-        .send({ message: "Update Your Passwor, Please Login!" });
-    });
+    if (existingUser[0].token === token) {
+      bcrypt.hash(password, 10, async function (err, hash) {
+        const updatePass = await User.findOneAndUpdate(
+          { email: decoded.email },
+          { $set: { password: hash, token: "", verify: true } },
+          { new: true }
+        );
+        await updatePass.save();
+        return res
+          .status(200)
+          .send({ message: "Update Your Passwor, Please Login!" });
+      });
+    } else {
+      return res.status(401).send({ error: "link expaired, Please Resend!" });
+    }
   } else {
     return res
       .status(401)
