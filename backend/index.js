@@ -3,10 +3,14 @@ const express = require("express");
 const route = require("./router");
 const cors = require("cors");
 const app = express();
+const mongoDBConfig = require("./config/mongoDBConfig");
 
 // middleware
 app.use(cors());
 app.use(express.json());
+
+// dbConnection
+mongoDBConfig();
 
 // router
 app.use(process.env.API_URL, route);
